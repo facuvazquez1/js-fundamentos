@@ -51,3 +51,29 @@ const listaJuegos = [
     },
 
 ]
+
+// funcion agregarJuego (spead operator)
+function agregarJuego(lista, juego) {
+    const nuevaListaArray = [...lista, juego] // usamos spread operator para no mutar el array original.
+    return nuevaListaArray
+}
+console.log(agregarJuego(listaJuegos, 
+    {
+    id: 6,         
+    titulo: "Gran Turismo 5",     
+    plataforma: "PS5",  
+    genero: "MMORPG",   
+    horas: 90,      
+    completado: false, 
+    puntaje: 6,      
+    }
+))
+
+// funcion marcarCompletado
+function marcarCompletado(lista, id){
+   
+}
+
+console.log(listaJuegos, 2)
+
+
