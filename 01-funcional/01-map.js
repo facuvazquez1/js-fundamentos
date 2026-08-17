@@ -59,6 +59,16 @@ const productos = [
 ]
 
 
+const precioDesc = productos.map(producto => {
+    if(producto.id === 2){
+        return {...producto, precio: producto.precio - (producto.precio * 0.10)}
+    } return producto
+})
+
+console.log(precioDesc)
+
+
+
 // 8. Dado un array de objetos { id, nombre, activo }, devolvé un nuevo array donde
 // el objeto con id === 3 cambia su propiedad "activo" a false, los demás quedan iguales
 

@@ -1,3 +1,5 @@
+// Temas: métodos funcionales de arrays (`map`, `filter`, `find`, `reduce`, `sort`)
+
 const listaJuegos = [
 
     {
@@ -52,7 +54,7 @@ const listaJuegos = [
 
 ]
 
-// funcion agregarJuego (spead operator)
+// 01. funcion agregarJuego (spead operator)
 function agregarJuego(lista, juego) {
     const nuevaListaArray = [...lista, juego] // usamos spread operator para no mutar el array original.
     return nuevaListaArray
@@ -69,11 +71,30 @@ console.log(agregarJuego(listaJuegos,
     }
 ))
 
-// funcion marcarCompletado
+// 02. funcion marcarCompletado (map + spread operator)
 function marcarCompletado(lista, id){
-   
+   const arrayCompletado = lista.map(juego => {
+    if (juego.id === id){
+        return {...juego, completado: true}
+    } else {
+        return juego
+    }
+   })
+   return arrayCompletado
 }
+console.log(marcarCompletado(listaJuegos, 5))
 
-console.log(listaJuegos, 2)
+// 03. Funcion filtar por plataforma (filter)
+function filtrarPorPlataforma(lista, plataforma){
+    return lista.filter(juego => juego.plataforma === plataforma )
+}
+console.log(filtrarPorPlataforma(listaJuegos, "PC"))
 
+// 04. Funcion filtrar juegos completados (filter)
+function filtrarCompletados(lista, completado){
+    return lista.filter(juego => juego.completado === completado)
+}
+console.log(filtrarCompletados(listaJuegos, true))
+
+buscarPorTitulo(lista, texto)
 
