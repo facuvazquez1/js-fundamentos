@@ -96,5 +96,33 @@ function filtrarCompletados(lista, completado){
 }
 console.log(filtrarCompletados(listaJuegos, true))
 
-buscarPorTitulo(lista, texto)
+// 05. Funcion buscar por titulo (filter + toLoweCase + includes)
+function buscarPorTitulo(lista, texto){
+    return lista.filter(juego => juego.titulo.toLowerCase().includes(texto.toLowerCase()))
+}
+console.log(buscarPorTitulo(listaJuegos, "fi"))
+
+// 06. Ordenar por puntaje (sort + spread operator)
+function ordenarPorPuntaje(lista){
+    const arrayOrdenadoPorPuntaje = [...lista] // creamos una copia para no mutar el original
+    return arrayOrdenadoPorPuntaje.sort((a,b) => b.puntaje - a.puntaje)
+}
+console.log("###### Punto 6 ######")
+console.log(ordenarPorPuntaje(listaJuegos))
+
+// 07. Ranking top 3 mejor puntaje (sort + spread operator + slice)
+function top3(lista){
+    return ordenarPorPuntaje(lista).slice(0,3)
+}
+
+console.log("### Ejercicio 7 ###")
+console.log(top3(listaJuegos))
+
+// 08. Horas totales 
+function horasTotales(lista){
+    return lista.reduce((acc, juego) => acc + juego.horas, 0)
+}
+
+console.log("### Ejercicio 8 ###")
+console.log(horasTotales(listaJuegos))
 
