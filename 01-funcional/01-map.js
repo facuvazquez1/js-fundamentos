@@ -1,4 +1,4 @@
-// Ejercicios de map — practicar aislado antes de volver al proyecto
+// Ejercicios de map 
 // Regla: cada ejercicio se resuelve con map, se corre con node, se verifica el resultado en consola.
 // map SIEMPRE devuelve un array del mismo largo que el original.
 
@@ -68,16 +68,37 @@ const precioDesc = productos.map(producto => {
 console.log(precioDesc)
 
 
-
 // 8. Dado un array de objetos { id, nombre, activo }, devolvé un nuevo array donde
 // el objeto con id === 3 cambia su propiedad "activo" a false, los demás quedan iguales
+
+const clientes = [
+    { id: 1, nombre: "Lautaro", activo: true },
+    { id: 2, nombre: "Ramiro", activo: false },
+    { id: 3, nombre: "Leandro", activo: true }
+]
+
+const clienteInactivo = clientes.map(cliente => {
+    if(cliente.id === 3){
+        return {...cliente, activo: false}
+    }  return cliente
+}
+)
+
+console.log(clienteInactivo)
 
 
 // 9. Dado un array de strings con espacios de más, devolvé un nuevo array con cada string
 // sin espacios al principio/final (usá .trim())
 const textos = ["  hola  ", "chau  ", "  javascript"]
+const textoSinEspacio = textos.map(texto => texto.trim())
+console.log(textoSinEspacio)
+
 
 
 // 10. Combiná filter + map: dado un array de números, quedate solo con los pares (filter)
 // y después devolvé cada uno elevado al cuadrado (map). Podés encadenarlos: array.filter(...).map(...)
 const numeros3 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+const paresAlCuadrado = numeros3.filter(n => n % 2 === 0).map(n => n * n)
+
+console.log(paresAlCuadrado)
