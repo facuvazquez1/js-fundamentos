@@ -118,7 +118,7 @@ function top3(lista){
 console.log("### Ejercicio 7 ###")
 console.log(top3(listaJuegos))
 
-// 08. Horas totales 
+// 08. Horas totales (reduce)
 function horasTotales(lista){
     return lista.reduce((acc, juego) => acc + juego.horas, 0)
 }
