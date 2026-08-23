@@ -125,33 +125,76 @@ console.log(miLista.verTareas()) // ["Estudiar closures", "Hacer ejercicios"]
 // llamás, debe alternar entre true y false (empezando en false) e imprimir el valor
 // actual. Primera llamada: false. Segunda: true. Tercera: false. Y así.
 
-// const interruptor = crearInterruptor()
-// interruptor() // false
-// interruptor() // true
-// interruptor() // false
+function crearInterruptor(){
+    let contador = 0
+    function trueFalse(){   
+        contador++   
+        if (contador % 2 === 0){
+            
+            console.log(true)
+            
+        } else {
+            
+            console.log(false)  
+        }       
+    }
+    return trueFalse
+}
+
+
+const interruptor = crearInterruptor()
+interruptor() // false
+interruptor() // true
+interruptor() // false
+
 
 
 // 7. Creá una función crearDescuento(porcentaje) que devuelva una función que reciba
 // un precio y devuelva ese precio con el descuento ya aplicado.
 
-// const descuento10 = crearDescuento(10)
-// const descuento25 = crearDescuento(25)
-// console.log(descuento10(1000)) // 900
-// console.log(descuento25(1000)) // 750
+function crearDescuento(porcentaje){
+   
+    function descuentoAplicado (monto){
+        return (1 - porcentaje / 100) * monto
+    }
+    return descuentoAplicado
+}
+
+const descuento10 = crearDescuento(10)
+const descuento25 = crearDescuento(25)
+console.log(descuento10(1000)) // 900
+console.log(descuento25(1000)) // 750
 
 
 // 8. Creá una función crearAcumulador() que devuelva una función que reciba un número
 // y lo vaya sumando a un total interno, devolviendo el total actualizado en cada llamada.
 
-// const sumar = crearAcumulador()
-// console.log(sumar(10)) // 10
-// console.log(sumar(5))  // 15
-// console.log(sumar(20)) // 35
+function crearAcumulador(){
+    let acc = 0
+    function sumaInterna(numero){
+        return acc += numero 
+    }
+    return sumaInterna
+}
+
+
+const sumar = crearAcumulador()
+console.log(sumar(10)) // 10
+console.log(sumar(5))  // 15
+console.log(sumar(20)) // 35
 
 
 // 9. Creá una función crearValidadorDeEdad(edadMinima) que devuelva una función que
 // reciba una edad y devuelva true si es mayor o igual a edadMinima, false si no.
 
-// const esMayorDeEdad = crearValidadorDeEdad(18)
-// console.log(esMayorDeEdad(20)) // true
-// console.log(esMayorDeEdad(15)) // false
+function crearValidadorDeEdad(edadMinima){
+    function validador(edad){
+        return edad >= edadMinima // simplificacion de un posible IF, la comparacion da true o false segun cumpla el booleano
+    }
+    return validador
+}
+
+
+const esMayorDeEdad = crearValidadorDeEdad(18)
+console.log(esMayorDeEdad(20)) // true
+console.log(esMayorDeEdad(15)) // false
