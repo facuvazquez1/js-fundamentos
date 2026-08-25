@@ -12,7 +12,7 @@ function crearContadorConLimite(limite){
     let contador = 0
 
     function incrementar(callback){
-        contador ++
+        contador++
         if (contador === limite){
             callback(`Has llegado al limite de ${contador}`)
         } else {
@@ -23,11 +23,18 @@ function crearContadorConLimite(limite){
     return incrementar
 }
 
+function imprimirMensaje(mensaje) {
+    console.log(mensaje)
+}
+
 const incrementar = crearContadorConLimite(3)
-console.log(incrementar())
-console.log(incrementar())
-console.log(incrementar())
-console.log(incrementar())
+
+incrementar(imprimirMensaje)
+incrementar(imprimirMensaje)
+incrementar(imprimirMensaje)
+incrementar(imprimirMensaje)
+
+
 
 
 
