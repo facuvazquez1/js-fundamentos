@@ -35,15 +35,38 @@ incrementar(imprimirMensaje)
 incrementar(imprimirMensaje)
 
 
-
-
-
-
 // 2. crearValidadorDeStock(stockInicial)
 // Devuelve un objeto con una función vender(cantidad, callbackExito, callbackSinStock).
 // Cada venta resta del stock interno (oculto). Si hay stock suficiente, ejecuta
 // callbackExito con el stock restante. Si no alcanza, ejecuta callbackSinStock
 // sin modificar el stock.
+
+function crearValidadorDeStock(stockInicial){
+
+    let stockActualizado = stockInicial
+
+    function vender(cantidad, callbackExito, callbackSinStock){
+        
+        if(cantidad <= stockActualizado){
+            stockActualizado -= cantidad
+            return callbackExito(stockActualizado)
+        } else {
+            
+            callbackSinStock()
+        }
+
+    }
+    return {vender}
+}
+
+const stock = crearValidadorDeStock(10)
+
+const aprobado = function exito(){ console.log(`Compara aprobada. Stock:`)}
+const desaprobado = function error(){console.log(`Producto sin stock.`)}
+
+stock.vender(3, aprobado, desaprobado)
+
+
 
 
 
@@ -53,3 +76,4 @@ incrementar(imprimirMensaje)
 //   y, si es mayor a 38, ejecuta callbackAlerta con un mensaje (si no supera 38, no
 //   ejecuta nada).
 // - promedio(): devuelve el promedio de todas las temperaturas registradas (usá reduce).
+
