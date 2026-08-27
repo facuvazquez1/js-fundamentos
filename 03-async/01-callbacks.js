@@ -88,3 +88,26 @@ validarEdad(14, (esMayor) => console.log(esMayor))
 // 5. Crea una función obtenerUsuario(id, callbackExito, callbackError) que
 //    espere 1 segundo. Si id > 0, invoca callbackExito con { id, nombre: "Usuario " + id }.
 //    Si id <= 0, invoca callbackError con el mensaje "ID inválido"
+
+function obtenerUsuario(id, callbackExito, callbackError){
+    setTimeout(() => {
+        if(id > 0){
+            callbackExito({id, nombre: "Usuario " + id})
+        } else {
+            callbackError("ID invalido")
+        }
+    }, 1000)
+}
+
+
+function  mensajeExito(usuario){
+    console.log(usuario)
+}
+function mensajeError(mensaje){
+    console.log(mensaje)
+}
+
+
+
+obtenerUsuario(1, mensajeExito, mensajeError)
+obtenerUsuario(-1, mensajeExito, mensajeError)
