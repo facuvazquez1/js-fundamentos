@@ -68,12 +68,31 @@ stock.vender(3, aprobado, desaprobado)
 
 
 
-
-
 // 3. crearRegistroDeTemperaturas()
 // Devuelve un objeto con dos funciones:
 // - registrar(temperatura, callbackAlerta): guarda la temperatura en un array interno
 //   y, si es mayor a 38, ejecuta callbackAlerta con un mensaje (si no supera 38, no
 //   ejecuta nada).
 // - promedio(): devuelve el promedio de todas las temperaturas registradas (usá reduce).
+
+function crearRegistroDeTemperaturas(){
+
+}
+
+
+function registrar(temperatura, callbackAlerta){
+
+    let registro = []
+    registro.push(temperatura)
+
+    if(temperatura > 38){
+        callbackAlerta(`Alerta de temperatura: $`)
+    } 
+
+   registro.reduce((acc, numero) => acc + numero, 0)
+
+}
+
+
+
 
