@@ -66,7 +66,7 @@ function obtenerPrecioDolar(){
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(1500)
-        }, 1000) // Tiempo: 1000 ms
+        }, 1000) // Tiempo: 1000 segundos
     })
 }
 
@@ -74,7 +74,7 @@ function obtenerPrecioEuro(){
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(1430)
-        }, 2000) // Tiempo: 2000 ms
+        }, 2000) // Tiempo: 2000 segundos
     })
 }
 
@@ -82,7 +82,7 @@ function obtenerPrecioReal(){
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(1000)
-        }, 1500) // Tiempo: 1500 ms
+        }, 1500) // Tiempo: 1500 segundos
     })
 }
 
@@ -92,8 +92,8 @@ Promise.all([obtenerPrecioDolar(), obtenerPrecioEuro(), obtenerPrecioReal()])
         console.log({dolar, euro, real})
     }) // Resultado: { dolar: 1500, euro: 1430, real: 1000 }
 
-// Tiempo total: 4.5 ms  
-// Tiempo real de ejecucion: 2.1 ms
+// Tiempo total: 4.5 segundos
+// Tiempo real de ejecucion: 2.1 segundos
 
 // Explicacion: Promise.all corre las tres Promises en paralelo, y el tiempo total es el de la más lenta (el euro, con sus 2 segundos), no la suma de todas. Esa es la ventaja real de usarlo en vez de encadenar .then() uno atrás de otro cuando las tareas son independientes entre sí.
 
