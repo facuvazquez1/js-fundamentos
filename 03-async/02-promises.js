@@ -54,14 +54,76 @@ verificarSaldo(100)
         console.log(error)
     })
 
+ 
+
 // 4. Crea tres funciones que devuelvan Promises: obtenerPrecioDolar(),
 //    obtenerPrecioEuro() y obtenerPrecioReal(). Cada una espera un tiempo
 //    distinto (por ejemplo 1s, 2s y 1.5s) y resuelve con un número inventado.
 //    Usa Promise.all() para esperar las tres al mismo tiempo y mostrar
 //    un objeto { dolar, euro, real } con los tres valores juntos
 
+function obtenerPrecioDolar(){
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(1500)
+        }, 1000) // Tiempo: 1000 ms
+    })
+}
+
+function obtenerPrecioEuro(){
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(1430)
+        }, 2000) // Tiempo: 2000 ms
+    })
+}
+
+function obtenerPrecioReal(){
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(1000)
+        }, 1500) // Tiempo: 1500 ms
+    })
+}
+
+
+Promise.all([obtenerPrecioDolar(), obtenerPrecioEuro(), obtenerPrecioReal()])
+    .then(([dolar, euro, real]) => {
+        console.log({dolar, euro, real})
+    }) // Resultado: { dolar: 1500, euro: 1430, real: 1000 }
+
+// Tiempo total: 4.5 ms  
+// Tiempo real de ejecucion: 2.1 ms
+
+// Explicacion: Promise.all corre las tres Promises en paralelo, y el tiempo total es el de la más lenta (el euro, con sus 2 segundos), no la suma de todas. Esa es la ventaja real de usarlo en vez de encadenar .then() uno atrás de otro cuando las tareas son independientes entre sí.
+
+
 // 5. Crea una función validarMonto(monto) que devuelva una Promise.
 //    Si monto es un number y es mayor a 0, resuelve con el monto.
 //    Si no cumple alguna de esas dos condiciones, rechaza con un mensaje
 //    que explique cuál validación falló. Probala con al menos 3 casos
 //    distintos (válido, no-number, negativo) encadenando .then()/.catch()
+
+function validarMonto(monto){
+    return new Promise((resolve, reject) => {
+        if(typeof monto !== "number"){
+            reject("Usted ingresó un dato no numérico, vuelva a intentarlo.")
+        } else if (monto <= 0) {
+            reject("Usted ha ingresado un número negativo")
+        } else {
+            resolve(monto)
+        }
+    })
+}
+
+validarMonto(100) // Resultado: 100
+    .then(monto => console.log(monto))
+    .catch(error => console.log(error))
+
+validarMonto("100") // Resultado: Usted ingresó un dato no numérico, vuelva a intentarlo.
+    .then(monto => console.log(monto))
+    .catch(error => console.log(error))
+
+validarMonto(-100) // Resultado: Usted ha ingresado un número negativo
+    .then(monto => console.log(monto))
+    .catch(error => console.log(error))
