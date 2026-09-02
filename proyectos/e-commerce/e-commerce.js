@@ -5,3 +5,20 @@ const catalogo = [
     { id: 4, nombre: "Auriculares", precio: 18000, stock: 0 },
 ]
 
+function consultarStock(productoId){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const producto = catalogo.find(producto => producto.id == productoId)
+            if (producto){
+                resolve(producto.stock)
+            } else {
+                reject("Producto no encontrado")
+            }
+
+        },500)
+    })
+}
+
+consultarStock(2).then()
+
+
