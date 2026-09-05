@@ -6,10 +6,35 @@
 const frutas = ["Manzana", "Banana", "Naranja"]
 const precios = [500, 300, 450]
 
+const productos = frutas.map((nombre, index) => {
+    
+    const precio = precios[index]
+
+    return {
+        nombre: nombre,
+        precio: precio, 
+        
+    }
+
+    
+
+})
+
+console.log(productos)
+
 // Usá map con índice sobre "frutas" para imprimir, por cada una,
 // un mensaje tipo: "Manzana cuesta 500"
 // (no hace falta return todavía, solo console.log adentro del map)
 
+const productos2 = frutas.map((nombre, index) => {
+    
+    const precio = precios[index]
+    
+    return `${nombre} cuesta: $ ${precio}`
+
+})
+
+console.log(productos2)
 
 // 2. Mismos arrays de arriba. Esta vez SÍ con return: usá map con índice
 // para armar un nuevo array de strings, uno por fruta, con el formato
@@ -17,12 +42,15 @@ const precios = [500, 300, 450]
 
 
 // 3. Dos arrays nuevos:
-const productos = ["Mouse", "Teclado", "Monitor"]
+const productos3 = ["Mouse", "Teclado", "Monitor"]
 const disponibles = [10, 0, 3]
 
 // Usá map con índice para armar un array de OBJETOS, uno por producto,
 // con esta forma: { nombre, stock, hayStock }
 // donde "hayStock" es true si el stock es mayor a 0, false si no.
+
+const verificarStock = productos3.map((nombre, index))
+
 
 
 // 4. Dos arrays nuevos:
