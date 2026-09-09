@@ -36,9 +36,9 @@ const carritoPrueba = [
 
 
 async function verificarStockCarrito(carrito){
+    
 
-    const promesas = carrito.map(item => consultarStock(item.productoId))
-    const stocks = await Promise.all(promesas)
+    
 }
 
 
