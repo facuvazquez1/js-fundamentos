@@ -1,9 +1,8 @@
-/**
- * 04-apis / 03-fetch-avanzado.js
- *
- * Requiere Node 18+ (fetch nativo, sin instalar nada).
- * API de práctica: https://jsonplaceholder.typicode.com
- */
+
+//  * 04-apis / 03-fetch-avanzado.js
+//  *
+//  * Requiere Node 18+ (fetch nativo, sin instalar nada).
+
 
 // Ejercicio 1 — medirSecuencial(): traé el post 1 y el post 2, uno
 // después del otro (dos await seguidos, no en paralelo). Envolvé todo
@@ -73,6 +72,8 @@ async function obtenerPostsYUsuarios() {
     const responseA = fetch("https://jsonplaceholder.typicode.com/posts")
     const responseB = fetch("https://jsonplaceholder.typicode.com/users")
 
+    
+
     // llamamos a todas las promesas en 1 solo llamado con await 
     const arrayDeResponse = await Promise.all([responseA, responseB])
     
@@ -86,7 +87,7 @@ async function obtenerPostsYUsuarios() {
   
 }
 
-console.log(await obtenerPostsYUsuarios())
+// console.log(await obtenerPostsYUsuarios())
 
 // Ejercicio 5 — obtenerVariosPostsSeguro(ids): igual al ejercicio 3,
 // pero usando Promise.allSettled en vez de Promise.all. Probalo con un
@@ -95,8 +96,28 @@ console.log(await obtenerPostsYUsuarios())
 // cuáles fallaron ("rejected"), sin que un solo id malo tire abajo todo
 // el resultado.
 async function obtenerVariosPostsSeguro(ids) {
-  // TODO
+    
+    const promesas = ids.map(id => fetch(`https://jsonplaceholder.typicode.com/posts/${id}`))
+
+    const arrayDeResponse = await Promise.allSettled(promesas) // [Response, Response, Response]
+    
+    arrayDeResponse.forEach(resultado => {
+        if(resultado.status === "fulfilled") {
+            console.log('Salio bien:', resultado.value)
+        } else {
+            console.log("Fallo: ", resultado.reason)
+        }
+    }
+    )
+    
 }
+
+// await obtenerVariosPostsSeguro([1, 2, 9999])
+
+
+
+
+
 
 // Ejercicio 6 — Cierre: postsPorVariosUsuarios(userIds): userIds es un
 // array de ids de usuario (por ejemplo [1, 2, 3]). Para cada uno, traé
@@ -105,3 +126,5 @@ async function obtenerVariosPostsSeguro(ids) {
 async function postsPorVariosUsuarios(userIds) {
   // TODO
 }
+
+
